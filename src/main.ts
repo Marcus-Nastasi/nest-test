@@ -9,6 +9,6 @@ async function bootstrap() {
   app.setBaseViewsDir(join('__dirname', '../../fe/public'));
   app.engine('html', ejs.renderFile);
   app.setViewEngine('html');
-  await app.listen(3000);
+  await app.listen(3000, () => console.log('http://localhost:3000'));
 }
 bootstrap();

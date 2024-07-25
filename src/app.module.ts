@@ -5,10 +5,13 @@ import { HomeController } from './controller/home/home.controller';
 import { HomeService } from './service/home/home.service';
 import { UsersModule } from './users/users.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthService } from './auth/auth.service';
+import { AuthController } from './auth/auth.controller';
+import { PrismaService } from './prisma/prisma.service';
 
 @Module({
   imports: [PrismaModule, UsersModule, UsersModule],
-  controllers: [AppController, HomeController],
-  providers: [AppService, HomeService],
+  controllers: [AppController, HomeController, AuthController],
+  providers: [AppService, HomeService, AuthService, PrismaService],
 })
 export class AppModule {}
