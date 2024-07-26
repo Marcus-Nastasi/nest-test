@@ -18,7 +18,7 @@ export class AuthService {
       try {
          return JWT.verify(token, this.secret);
       } catch(e: any) {
-         console.log(e.message);
+         return null;
       }
    }
 }

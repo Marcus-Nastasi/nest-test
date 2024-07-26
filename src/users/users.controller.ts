@@ -1,10 +1,14 @@
 import { Body, Controller, Delete, Get, Headers, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
 import { Response } from 'express';
 
-import { RegisterDTO, UsersService } from './users.service';
+import { UsersService } from './users.service';
+import RegisterDTO from 'DTOs/User/RegisterDTO';
+import UpdateDTO from 'DTOs/User/UpdateDTO';
+import IUser from 'Interfaces/IUser';
 
 @Controller('users')
 export class UsersController {
+
    constructor(private readonly service: UsersService) {}
 
    @Get()
@@ -18,19 +22,23 @@ export class UsersController {
    @Post('register')
    async create(@Body() data: RegisterDTO, @Headers('authorization') header: string, @Res() res: Response) {
       if (!header) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'invalid header' }).end();
-      return this.service.create(data, header);
+      const user: IUser = await this.service.create(data, header);
+      if (!user) return res.status(401).json({ error: 'invalid token' }).end();
+      return res.status(201).json({ user: user }).end();
    }
 
    @Put('update/:id')
-   async update(@Param('id') id: number, @Body() data: RegisterDTO, @Headers('authorization') header: string, @Res() res: Response) {
+   async update(@Param('id') id: number, @Body() data: UpdateDTO, @Headers('authorization') header: string, @Res() res: Response) {
       if (!header) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'invalid header' }).end();
-      return this.service.update(id, data, header);
+      const user: IUser = await this.service.update(id, data, header);
+      return res.status(201).json({ user: user }).end();
    }
 
    @Delete('delete/:id')
    async delete(@Param('id') id: number, @Headers('authorization') header: string, @Res() res: Response) {
       if (!header) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'invalid header' }).end();
-      return this.service.delete(id, header);
+      const deleted_user: IUser = await this.service.delete(id, header);
+      return res.status(202).json({ user: deleted_user }).end();
    }
 }
 
