@@ -4,11 +4,11 @@ import * as JWT from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
-   private readonly secret = process.env.jwt_secret;
+   private readonly secret: string = process.env.jwt_secret;
 
    generate(user: string): string {
       return JWT.sign(
-         { username: user, sub: user },
+         { username: user },
          this.secret,
          { expiresIn: '10m' }
       );

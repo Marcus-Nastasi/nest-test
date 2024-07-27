@@ -14,7 +14,7 @@ export class UsersController {
    @Get()
    async get(@Headers('authorization') header: string, @Res() res: Response) {
       if (!header) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'invalid header' }).end();
-      const users = await this.service.get(header.replace('Bearer ', ''));
+      const users: Array<IUser> = await this.service.get(header.replace('Bearer ', ''));
       if (!users) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'invalid user' }).end();
       return res.status(HttpStatus.OK).json({ users }).end();
    }
