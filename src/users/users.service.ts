@@ -18,6 +18,12 @@ export class UsersService {
       return await this.prisma.users.findMany();
    }
 
+   async getUnique(token: string, id: number): Promise<IUser> {
+      if (!token) return null;
+      if (!this.auth.validate(token)) return null;
+      return await this.prisma.users.findUnique({ where: { id: id } });
+   }
+
    async create(data: RegisterDTO, header: string): Promise<Prisma.Prisma__usersClient<IUser>> {
       if (!header) return null;
       const token: string = header.replace('Bearer ', '');

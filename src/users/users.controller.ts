@@ -19,6 +19,14 @@ export class UsersController {
       return res.status(HttpStatus.OK).json({ users }).end();
    }
 
+   @Get('/:id')
+   async getUnique(@Param('id') id: string, @Headers('authorization') header: string, @Res() res: Response) {
+      if (!header) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'invalid header' }).end();
+      const users: IUser = await this.service.getUnique(header.replace('Bearer ', ''), Number(id));
+      if (!users) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'invalid user or token expired' }).end();
+      return res.status(HttpStatus.OK).json({ user: users }).end();
+   }
+
    @Post('register')
    async create(@Body() data: RegisterDTO, @Headers('authorization') header: string, @Res() res: Response) {
       if (!header) return res.status(HttpStatus.UNAUTHORIZED).json({ error: 'invalid header' }).end();

@@ -7,11 +7,15 @@ export class AuthService {
    private readonly secret: string = process.env.jwt_secret;
 
    generate(user: string): string {
-      return JWT.sign(
-         { username: user },
-         this.secret,
-         { expiresIn: '1h' }
-      );
+      try {
+         return JWT.sign(
+             { username: user },
+             this.secret,
+             { expiresIn: '1h' }
+         );
+      } catch (e: any) {
+         return null;
+      }
    }
 
    validate(token: string): string | JWT.JwtPayload {
