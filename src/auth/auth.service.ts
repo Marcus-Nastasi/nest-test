@@ -10,7 +10,7 @@ export class AuthService {
       return JWT.sign(
          { username: user },
          this.secret,
-         { expiresIn: '10m' }
+         { expiresIn: '1h' }
       );
    }
 

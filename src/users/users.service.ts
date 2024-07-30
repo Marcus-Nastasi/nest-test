@@ -29,6 +29,7 @@ export class UsersService {
       if (!header) return null;
       const token: string = header.replace('Bearer ', '');
       if (!this.auth.validate(token)) return null;
+      if (!(await this.prisma.users.findUnique({ where: { id: Number(id) } }))) return null;
       return await this.prisma.users.update({ where: { id: Number(id) }, data: data })
    }
 
@@ -36,6 +37,7 @@ export class UsersService {
       if (!header) return null;
       const token: string = header.replace('Bearer ', '');
       if (!this.auth.validate(token)) return null;
+      if (!(await this.prisma.users.findUnique({ where: { id: Number(id) } }))) return null;
       return await this.prisma.users.delete({ where: { id: Number(id) } });
    }
 }
