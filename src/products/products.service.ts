@@ -19,12 +19,12 @@ export class ProductsService {
 
     async update(data: PRegisterDTO, id: number, token: string): Promise<Product> {
         if (!this.auth.validate(token)) return null;
-        return await this.prisma.products.update({ where: { id }, data: data });
+        return await this.prisma.products.update({ where: { id: id }, data: data });
     }
 
     async delete(id: number, token: string): Promise<Product> {
         if (!this.auth.validate(token)) return null;
-        return await this.prisma.products.delete({ where: { id } });
+        return await this.prisma.products.delete({ where: { id: id } });
     }
 }
 

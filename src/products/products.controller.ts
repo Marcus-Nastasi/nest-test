@@ -20,13 +20,13 @@ export class ProductsController {
 
     @Put('update/:id')
     async updateProduct(@Param('id') id: string, @Body() data: PRegisterDTO, @Headers('authorization') token: string, @Res() res: Response): Promise<Response<Product>> {
-        const updated = await this.productsService.update(data, Number(id), token.replace("Bearer", ''));
+        const updated = await this.productsService.update(data, Number(id), token.replace("Bearer ", ''));
         return res.status(202).json({ data: updated }).end();
     }
 
     @Delete('delete/:id')
     async deleteProduct(@Param('id') id: string, @Headers('authorization') token: string, @Res() res: Response): Promise<Response<Product>> {
-        return res.status((202)).json({ data: await this.productsService.delete(Number(id), token) });
+        return res.status((202)).json({ data: await this.productsService.delete(Number(id), token.replace('Bearer ', '')) });
     }
 }
 
