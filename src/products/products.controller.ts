@@ -1,7 +1,7 @@
-import {Body, Controller, Delete, Get, Headers, Param, Post, Put, Res} from '@nestjs/common';
-import {ProductsService} from "./products.service";
+import { Body, Controller, Delete, Get, Headers, Param, Post, Put, Res } from '@nestjs/common';
+import { ProductsService } from "./products.service";
 import PRegisterDTO from "../../DTOs/Products/PRegisterDTO";
-import {Response} from "express";
+import { Response } from "express";
 import Product from "../../DTOs/Products/Product";
 
 @Controller('products')
@@ -26,7 +26,7 @@ export class ProductsController {
 
     @Delete('delete/:id')
     async deleteProduct(@Param('id') id: string, @Headers('authorization') token: string, @Res() res: Response): Promise<Response<Product>> {
-        return res.status((202)).json({ data: await this.productsService.delete(Number(id), token.replace('Bearer ', '')) });
+        return res.status(202).json({ data: await this.productsService.delete(Number(id), token.replace('Bearer ', '')) });
     }
 }
 

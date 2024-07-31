@@ -14,7 +14,7 @@ import { PurchasesController } from './purchases/purchases.controller';
 import { PurchasesService } from './purchases/purchases.service';
 
 @Module({
-  imports: [PrismaModule, UsersModule, UsersModule],
+  imports: [PrismaModule, UsersModule],
   controllers: [AppController, HomeController, AuthController, ProductsController, PurchasesController],
   providers: [AppService, HomeService, AuthService, PrismaService, ProductsService, PurchasesService],
 })
