@@ -4,8 +4,8 @@ import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AuthService } from 'src/auth/auth.service';
 import IUser from 'src/Interfaces/IUser';
-import RegisterDTO from 'DTOs/User/RegisterDTO';
-import UpdateDTO from 'DTOs/User/UpdateDTO';
+import RegisterDTO from 'src/DTOs/User/RegisterDTO';
+import UpdateDTO from 'src/DTOs/User/UpdateDTO';
 
 @Injectable()
 export class UsersService {

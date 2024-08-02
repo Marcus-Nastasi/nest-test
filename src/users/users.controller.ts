@@ -2,8 +2,8 @@ import { Body, Controller, Delete, Get, Headers, HttpStatus, Param, Post, Put, R
 import { Response } from 'express';
 
 import { UsersService } from './users.service';
-import RegisterDTO from 'DTOs/User/RegisterDTO';
-import UpdateDTO from 'DTOs/User/UpdateDTO';
+import RegisterDTO from 'src/DTOs/User/RegisterDTO';
+import UpdateDTO from 'src/DTOs/User/UpdateDTO';
 import IUser from 'src/Interfaces/IUser';
 
 @Controller('users')

@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, Headers, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
 import { ProductsService } from "./products.service";
-import PRegisterDTO from "../../DTOs/Products/PRegisterDTO";
+import PRegisterDTO from "../DTOs/Products/PRegisterDTO";
 import { Response } from "express";
-import Product from "../../DTOs/Products/Product";
+import Product from "../DTOs/Products/Product";
 
 @Controller('products')
 export class ProductsController {
