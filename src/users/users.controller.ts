@@ -4,7 +4,7 @@ import { Response } from 'express';
 import { UsersService } from './users.service';
 import RegisterDTO from 'DTOs/User/RegisterDTO';
 import UpdateDTO from 'DTOs/User/UpdateDTO';
-import IUser from 'Interfaces/IUser';
+import IUser from 'src/Interfaces/IUser';
 
 @Controller('users')
 export class UsersController {

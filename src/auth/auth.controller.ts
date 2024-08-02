@@ -3,7 +3,7 @@ import {Body, Controller, HttpStatus, Post, Res} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
-import IUser from 'Interfaces/IUser';
+import IUser from 'src/Interfaces/IUser';
 
 @Controller('auth')
 export class AuthController {
