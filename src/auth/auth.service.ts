@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-
 import * as JWT from 'jsonwebtoken';
 
 @Injectable()
@@ -9,9 +8,9 @@ export class AuthService {
    generate(user: string): string {
       try {
          return JWT.sign(
-             { username: user },
-             this.secret,
-             { expiresIn: '1h' }
+            { username: user },
+            this.secret,
+            { expiresIn: '1h' }
          );
       } catch (e: any) {
          return null;

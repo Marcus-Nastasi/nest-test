@@ -14,13 +14,13 @@ export class AuthController {
       try {
          const user = await this.prisma.users.findFirst({ where: { name: data.name, cpf: data.cpf } });
          if (!user || user.name !== data.name || user.cpf !== data.cpf) return res
-             .status(401)
-             .json({ status: HttpStatus.UNAUTHORIZED, message: 'Invalid user' })
-             .end();
+            .status(HttpStatus.UNAUTHORIZED)
+            .json({ data: [ { status: HttpStatus.UNAUTHORIZED, message: 'Invalid user' } ] })
+            .end();
          return res
-             .status(HttpStatus.ACCEPTED)
-             .json({ token: this.service.generate(user.cpf) })
-             .end();
+            .status(HttpStatus.ACCEPTED)
+            .json({ data: [ { token: this.service.generate(user.cpf) } ] })
+            .end();
       } catch (e: any) {
          return res.status(500).end();
       }
