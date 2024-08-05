@@ -1,8 +1,8 @@
-import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { PurchasesService } from './purchases.service';
 import Purchase from 'src/Interfaces/Purchase';
 
-@Controller('purchases')
+@Controller('purchase')
 export class PurchasesController {
    constructor(private readonly service: PurchasesService) {}
 
@@ -12,12 +12,12 @@ export class PurchasesController {
    }
 
    @Post('register')
-   async register(data: Purchase) {
+   async register(@Body() data: Purchase) {
       return await this.service.register(data);
    }
 
    @Put('update/:id')
-   async update(@Param('id') id: string, data: Purchase) {
+   async update(@Param('id') id: string, @Body() data: Purchase) {
       return await this.service.update(Number(id), data);
    }
 
